@@ -16,8 +16,10 @@ function findRecursive(l:string[]):string[] {
 }
 
 export function dataToNetwork(selected_units:number[]) {
+    // Use indices to find nodes (and children) 
+    
     var recursiveUnits: string[] = [];
     for (let i = 0; i < selected_units.length; i++) {
-
+        recursiveUnits.push(units[selected_units[i]])
     }
 }
