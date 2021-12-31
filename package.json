@@ -1,0 +1,55 @@
+{
+    "devDependencies": {
+        "@babel/preset-env": "^7.16.5",
+        "autoprefixer": "^10.4.1",
+        "babel-loader": "^8.2.3",
+        "htmlnano": "^1.1.1",
+        "imagemin-cli": "^7.0.0",
+        "node-sass": "^7.0.1",
+        "npm-run-all": "^4.1.5",
+        "onchange": "^7.1.0",
+        "postcss-cli": "^9.1.0",
+        "posthtml": "^0.16.5",
+        "posthtml-cli": "^0.10.0",
+        "posthtml-modules": "^0.8.0",
+        "tailwindcss": "^3.0.8",
+        "webpack": "^5.65.0",
+        "webpack-cli": "^4.9.1"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "d3": "^7.2.1"
+    },
+    "scripts": {
+        "clean": "rimraf dist/*",
+        "css:scss": "node-sass --output-style compressed -o src/css src/scss",
+        "css:tailwind": "npx tailwindcss -i src/css/input.css -o dist/index.css --minify",
+        "css:autoprefixer": "postcss -u autoprefixer -r dist/*.css",
+        "build:css": "npm run css:scss && npm run css:tailwind && npm run css:autoprefixer",
+        "watch:css": "onchange \"src/scss\" -- npm run build:css",
+        "build:images": "imagemin src/images/**/* --out-dir=dist/images",
+        "watch:images": "onchange \"src/images\" -- npm run build:images",
+        "build:js": "webpack --mode=production",
+        "watch:js": "onchange \"src/**/*.js\" -- webpack --mode=development",
+        "build:ts": "tsc",
+        "watch:ts": "onchange \"src/js/*.ts\" -- npm run build:ts",
+        "build:html": "posthtml -c posthtml.json",
+        "watch:html": "onchange \"src/views\" -- npm run build:html",
+        "build": "run-p build:*",
+        "watch": "run-p serve watch:*"
+    },
+    "name": "portfolio",
+    "description": "All Rights Reserved",
+    "version": "1.0.0",
+    "main": "src/js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Tarang74/Tarang74.github.io.git"
+    },
+    "author": "Tarang Janawalkar",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Tarang74/Tarang74.github.io/issues"
+    },
+    "homepage": "https://github.com/Tarang74/Tarang74.github.io#readme"
+}
