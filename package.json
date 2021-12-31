@@ -36,7 +36,7 @@
         "watch:ts": "onchange \"src/js/*.ts\" -- npm run build:ts",
         "build:html": "posthtml -c posthtml.json",
         "watch:html": "onchange \"src/views\" -- npm run build:html",
-        "build": "run-p build:*",
+        "build": "run-p build:* && push-dir --dir=dist --branch=gh-pages",
         "watch": "run-p serve watch:*"
     },
     "name": "portfolio",
