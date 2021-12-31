@@ -15,11 +15,13 @@ function findRecursive(l:string[]):string[] {
     return [];
 }
 
-export function dataToNetwork(selected_units:number[]) {
+export function dataToNetwork(selected_units:number[]):string[] {
     // Use indices to find nodes (and children) 
     
     var recursiveUnits: string[] = [];
     for (let i = 0; i < selected_units.length; i++) {
-        recursiveUnits.push(units[selected_units[i]])
+        recursiveUnits.push(units[selected_units[i]]);
     }
+
+    return [];
 }
