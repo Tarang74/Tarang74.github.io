@@ -9,20 +9,11 @@ function viewSidebar() {
         document.getElementById("sidebar").classList.remove("sidebar-closed");
         document.getElementById("sidebar-btn").classList.add("sidebar-btn-opened");
         document.getElementById("sidebar-btn").classList.remove("sidebar-btn-closed");
-        sideBarState = true
+        sideBarState = true;
     } else {
         document.getElementById("sidebar").classList.add("sidebar-closed");
         document.getElementById("sidebar-btn").classList.remove("sidebar-btn-opened");
         document.getElementById("sidebar-btn").classList.add("sidebar-btn-closed");
         sideBarState = false;
     }
-}
-
-// Selection
-/* Event listener */
-const select = document.getElementById("unit-select");
-select.addEventListener("input", selectUnits);
-
-function selectUnits() {
-
 }

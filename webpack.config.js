@@ -1,7 +1,14 @@
 module.exports = {
     entry: {
-        app: './src/js/app.js',
-        sidebar: './src/ts/sidebar.js'
+        app: {
+            import: './src/ts/app.js',
+        },
+        sidebar: {
+            import: './src/ts/sidebar.js',
+        },
+        unit_select: {
+            import: './src/ts/unit_select.js',
+        }
     },
     output: {
         path: __dirname + '/dist',
@@ -20,5 +27,10 @@ module.exports = {
                 }
             }
         ]
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        }
     }
 }

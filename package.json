@@ -29,18 +29,19 @@
         "build:css": "npm run css:scss && npm run css:tailwind && npm run css:autoprefixer",
         "watch:css": "onchange \"src/scss\" -- npm run build:css",
         "build:ts": "tsc",
-        "watch:ts": "onchange \"src/js/*.ts\" -- npm run build:ts",
+        "watch:ts": "onchange \"src/ts/*.ts\" -- npm run build:ts",
         "build:js": "webpack --mode=production",
         "watch:js": "onchange \"src/**/*.js\" -- webpack --mode=development",
         "build:images": "imagemin src/images/**/* --out-dir=dist/images",
         "watch:images": "onchange \"src/images\" -- npm run build:images",
         "build:html": "posthtml -c posthtml.json",
         "watch:html": "onchange \"src/views\" -- npm run build:html",
-        "build": "run-p build:css build:ts build:js build:images build:html && push-dir --dir=dist --branch=gh-pages",
-        "watch": "run-p serve watch:css watch:ts watch:js watch:images watch:html"
+        "build": "run-p build:css build:ts build:js build:images build:html",
+        "watch": "run-p watch:css watch:ts watch:js watch:images watch:html",
+        "push": "push-dir --dir=dist --branch=gh-pages"
     },
     "name": "portfolio",
-    "description": "All Rights Reserved",
+    "description": "My Portfolio",
     "version": "1.0.0",
     "main": "src/js",
     "repository": {

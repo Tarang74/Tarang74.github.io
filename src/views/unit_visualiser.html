@@ -26,10 +26,11 @@
             <div class="flex flex-col justify-start items-center gap-2 p-8 overflow-y-auto">
                 <!-- Select Units -->
                 <div class="w-full">
-                    <label class="text-left text-lg text-gray-100 w-full" for="unit-select">
+                    <label class="text-left text-lg text-gray-100 w-full" for="select-units">
                         Select Units:
                     </label>
-                    <input id="unit-select" class="w-full p-2" type="text" name="unit-select" oninput="selectUnits()">
+                    <input id="select-units" class="w-full p-2 rounded-md" type="text" name="select-units">
+                    <ul id="select-options" class="mt-2 absolute w-full rounded-sm p-2 max-h-96 overflow-y-auto bg-white border-slate-500 shadow-gray-300"></ul>
                 </div>
                 <!-- Displayed Units -->
                 <div class="w-full">
@@ -65,8 +66,9 @@
                 <div class="powered-by">Powered by <img src="./images/d3_js.svg" alt="d3.js Logo"></div>
             </div>
         </nav>
-        <script src="./sidebar.js"></script>
         <script src="./app.js"></script>
+        <script src="./sidebar.js"></script>
+        <script src="./unit_select.js"></script>
     </div>
 </body>
 
