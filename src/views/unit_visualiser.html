@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unit Visualiser</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <link href="/index.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -18,19 +23,25 @@
 </head>
 
 <body>
-    <div class="app flex justify-center items=center bg-gray-100 w-screen h-screen">
-        <nav id="sidebar" class="sidebar-closed fixed h-screen w-72 left-0 top-0 bg-blue-500">
+    <div class="app flex justify-center items=center bg-slate-100 w-screen h-screen">
+        <nav id="sidebar" class="sidebar-closed fixed h-screen w-80 left-0 top-0 bg-blue-600">
             <div id="sidebar-btn" class="sidebar-btn-closed absolute top-8 -right-8 w-8 h-8 cursor-pointer">
                 <img id="sidebar-btn-icon" class="h-full w-full" src="/images/arrow-right.svg" alt="Open Sidebar">
             </div>
-            <div class="flex flex-col justify-start items-center gap-2 p-8 overflow-y-auto">
+            <div class="flex flex-col justify-start items-center gap-6 p-8 h-full" style="overflow:overlay;">
+                <div>
+                    <h1 class="font-bold text-4xl text-white">Unit Visualiser</h1>
+                </div>
                 <!-- Select Units -->
-                <div class="w-full">
+                <div id="select-units-container" class="w-full">
                     <label class="text-left text-lg text-gray-100 w-full" for="select-units">
                         Select Units:
                     </label>
-                    <input id="select-units" class="w-full p-2 rounded-md" type="text" name="select-units">
-                    <ul id="select-options" class="mt-2 absolute w-full rounded-sm p-2 max-h-96 overflow-y-auto bg-white border-slate-500 shadow-gray-300"></ul>
+                    <input id="select-units" class="w-full p-2 rounded-md text-gray-900 bg-slate-100 hover:bg-slate-50 focus-visible:bg-slate-50 focus-visible:text-black" type="text" name="select-units">
+                    <div class="mt-2 absolute rounded-md left-8 right-8 overflow-hidden bg-gray-100 border-1 border-solid border-slate-700 border-opacity-20 shadow-gray-300">
+                        <ul id="select-options" class="select-options-ul p-2 max-h-48">
+                        </ul>
+                    </div>
                 </div>
                 <!-- Displayed Units -->
                 <div class="w-full">
@@ -63,13 +74,13 @@
                         Name: <br>
                     </div>
                 </div>
-                <div class="powered-by">Powered by <img src="./images/d3_js.svg" alt="d3.js Logo"></div>
             </div>
         </nav>
         <script src="./app.js"></script>
         <script src="./sidebar.js"></script>
         <script src="./unit_select.js"></script>
     </div>
+    <img class="d3-logo absolute opacity-40 bottom-2 right-2" src="images/d3_js.svg" draggable="false">
 </body>
 
 </html>
