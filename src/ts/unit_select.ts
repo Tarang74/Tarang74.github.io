@@ -33,6 +33,7 @@ function updateOptions() {
             // No units found
             closeOptions();
         } else {
+            let li: Array<HTMLElement> = [];
             for (let i = 0; i < visible.length; i++) {
                 let a1: HTMLAnchorElement = document.createElement('a');
                 a1.textContent = units[visible[i]];
@@ -44,17 +45,28 @@ function updateOptions() {
                 div.appendChild(a1);
                 div.appendChild(a2);
 
-                let li: HTMLLIElement = document.createElement('li');
-                li.id = visible[i].toString();
-                li.appendChild(div);
+                li[i] = document.createElement('li');
+                li[i].id = visible[i].toString();
+                li[i].appendChild(div);
 
-                ul.appendChild(li);
+                ul.appendChild(li[i]);
             }
 
-            var li = [...ul.getElementsByTagName("li")];
-            li.forEach(element => {
-                element.addEventListener('click', () => { addUnitsToSelection(parseInt(element.id)); closeOptions() });
+            let selectPromise = new Promise((resolve, reject) => {
+                li.forEach(element => {
+                    element.addEventListener('click', () => resolve(element.id), true);
+                });
+                document.addEventListener('click', reject);
             });
+
+            selectPromise.then(
+                value => {
+                    addUnitsToSelection(value as string);
+                },
+                error => {
+                    closeOptions();
+                }
+            );
         }
     } else {
         closeOptions();
@@ -79,25 +91,22 @@ function clearOptions() {
 }
 
 function closeOptions() {
-    clearOptions(); 
+    clearOptions();
     ul.style.display = 'none';
 }
 
-function addUnitsToSelection(l: number | Array<number>) {
-    if (typeof (l) == 'object') {
-        for (let i = 0; i < l.length; i++) {
-            selectedUnits.push(units[l[i]]);
-        }
-    } else {
-        selectedUnits.push(units[l]);
-    }
+function addUnitsToSelection(s: string) {
+    selectedUnits.push(units.indexOf(s));
+    closeOptions();
+
+    updateSelection();
 }
 
-function removeUnitFromSelection(unit: string) {
+function removeUnitFromSelection(unit: number) {
     selectedUnits.splice(selectedUnits.indexOf(unit));
 }
 
-function selectUnits(): NetworkNode {
+function updateSelection(): NetworkNode {
     // // Find units in URL
     // var url = new URL(window.location.href);
     // selectedUnits = url.searchParams.get("units").split(',').map(Number);
@@ -108,8 +117,9 @@ function selectUnits(): NetworkNode {
         recursiveUnits.push([units[selectedUnits[i]], prerequisites[selectedUnits[i]]]);
     }
 
-    var nodes = formatNode(findRecursive(recursiveUnits));
+    var nodes = findRecursive(recursiveUnits);
     console.log(nodes);
+    var network = formatNode(nodes);
 
     return { nodes: [{ name: 'A' }], links: [{ source: 'A', target: 'B' }] };
 }
@@ -130,7 +140,6 @@ function findRecursive(l: Unit[]): Array<[string, number, number]> {
             let newNode: string;
             if (typeof (l[i][1][j]) == 'object') {
                 // Conjunction
-                console.log("Conjunction");
                 let lenK: number = l[i][1][j].length;
                 for (let k = 0; k < lenK; k++) {
                     newNode = l[i][1][j][k];
@@ -138,7 +147,6 @@ function findRecursive(l: Unit[]): Array<[string, number, number]> {
                 }
             } else if (typeof (l[i][1][j]) == 'string') {
                 // String literal
-                console.log("String");
                 newNode = l[i][1][j] as string;
                 nodes.indexOf([newNode, i, j]) === -1 ? nodes.push([newNode, i, j]) : {};
             }
@@ -149,7 +157,11 @@ function findRecursive(l: Unit[]): Array<[string, number, number]> {
 }
 
 function formatNode(l: Array<[string, number, number]>): NetworkNode {
+    var network: NetworkNode = { nodes: [], links: [] };
+    l.forEach(element => {
+        network.nodes.push({name: element[0]});
 
+    });
     return { nodes: [{ name: 'A' }], links: [{ source: 'A', target: 'B' }] }
 }
 
@@ -158,7 +170,7 @@ var units: Array<string> = [];
 var prerequisites: Array<Array<Array<string> | string>> = [];
 data.Units.forEach((value, index, array) => { units.push(value.unit_code); prerequisites.push(value.prerequisites) });
 
-var selectedUnits: Array<string> = [];
+var selectedUnits: Array<number> = [];
 
 // Selection
 /* Event listener */
@@ -168,8 +180,6 @@ export var output: NetworkNode;
 /* Options list */
 var ul: HTMLElement = document.getElementById("select-options");
 
-select.addEventListener("input", () => {updateOptions(); checkForScroll()});
-select.addEventListener("blur", closeOptions);
+select.addEventListener("input", () => { updateOptions(); checkForScroll() });
 
-document.addEventListener("click", closeOptions);
 closeOptions();
