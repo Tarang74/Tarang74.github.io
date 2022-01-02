@@ -6,6 +6,9 @@ module.exports = {
         sidebar: {
             import: './src/ts/sidebar.js',
         },
+        transition_event: {
+            import: './src/ts/transition_event.js',
+        },
         unit_select: {
             import: './src/ts/unit_select.js',
         }
