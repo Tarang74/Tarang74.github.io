@@ -42,7 +42,7 @@
     "name": "portfolio",
     "description": "My Portfolio",
     "version": "1.0.0",
-    "main": "src/js",
+    "main": "src/ts",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Tarang74/Tarang74.github.io.git"
