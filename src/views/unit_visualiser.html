@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div class="app flex justify-center items=center bg-slate-100 w-screen h-screen">
+    <div id="app" class="app flex justify-center items=center bg-slate-100 w-screen h-screen">
         <nav id="sidebar" class="sidebar-closed fixed h-screen w-80 left-0 top-0 bg-blue-600">
             <div id="sidebar-btn" class="sidebar-btn-closed absolute top-8 -right-8 w-8 h-8 cursor-pointer bg-transparent">
                 <img id="sidebar-btn-icon" class="h-full w-full" src="/images/arrow-right.svg" alt="Open Sidebar">
@@ -76,7 +76,6 @@
                 </div>
             </div>
         </nav>
-        <svg><g id="graph-group"></g></svg>
         <script src="./app.js"></script>
         <script src="./sidebar.js"></script>
         <script src="./unit_select.js"></script>

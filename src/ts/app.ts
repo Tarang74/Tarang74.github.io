@@ -1,73 +1,159 @@
 import { updateOptions, getUnitData } from './unit_select';
-import { select } from 'd3';
+import * as d3 from 'd3';
+
+const container = document.getElementById("app");
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+const minZoom = 0.5;
+const maxZoom = 7;
+
+const svg = d3
+    .select(container)
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+svg
+    .append('defs')
+    .append('marker')
+    .attr('id', 'arrow')
+    .attr('viewBox', [0, 0, 20, 20])
+    .attr('refX', 10)
+    .attr('refY', 10)
+    .attr('markerWidth', 10)
+    .attr('markerHeight', 10)
+    .attr('orient', 'auto-start-reverse')
+    .append('line');
+
+const rectWidth = 25;
+const rectHeight = 15;
 
 function updateCanvas(json) {
     return new Promise(() => {
-        var vis = select('#graph-group').attr('transform', 'translate(20, 20)');
+        var simulation = d3
+            .forceSimulation()
+            .nodes(json.nodes);
 
-        // Build initial link elements - Build first so they are under the nodes
-        var links = vis.selectAll('line.link').data(json.links);
-        links.enter().append('line').attr('class', 'link').attr('stroke', '#000');
+        var linkForce = d3
+            .forceLink()
+            .links(json.links)
+            .id((d:any) => d.name);
 
-        // Build initial node elements
-        var nodes = vis.selectAll('g.node').data(json.nodes);
-        nodes.enter().append('g').attr('class', 'node').append('circle').attr('r', 10).append('title').text(function (d) {
-            return d.name;
-        });
+        var chargeForce = d3
+            .forceManyBody()
+            .strength(-200);
 
-        // Store nodes in a hash by name
-        var nodesByName = {};
-        nodes.each(function (d) {
-            nodesByName[d.name] = d;
-        });
+        var centerForce = d3.forceCenter(width / 2, height / 2);
 
-        // Convert link references to objects
-        links.each(function (link) {
-            link.source = nodesByName[link.source];
-            link.target = nodesByName[link.target];
-            if (!link.source.links) {
-                link.source.links = [];
+        simulation
+            .force('charge_force', chargeForce)
+            .force('center_force', centerForce)
+            .force('links', linkForce);
+
+        simulation.on('tick', tickActions);
+
+        var g = svg.append('g')
+            .attr('class', 'all');
+
+        var link = g
+            .append('g')
+            .attr('class', 'links')
+            .selectAll('line')
+            .data(json.links)
+            .enter()
+            .append('line')
+            .attr('stroke-width', 6)
+            .attr('stroke', linkColor)
+            .attr('marker-start', 'url(#arrow)')
+            .attr('fill', 'none');
+
+        var nodeGroup = g
+            .append('g')
+            .attr('class', 'nodes')
+            .selectAll('rect')
+            .data(json.nodes)
+            .enter()
+
+        var node = nodeGroup
+            .append('rect')
+            .attr('width', rectWidth)
+            .attr('height', rectHeight)
+            .style('fill', fillColor)
+            .style('stroke', 'white')
+            .on('mouseover', d => console.log(d));
+
+        var nodeText = nodeGroup
+            .append('text')
+            .text(json.nodes.name)
+
+        var dragHandler = d3.drag()
+            .on('start', dragStart)
+            .on('drag', dragDrag)
+            .on('end', dragEnd);
+        dragHandler(node);
+
+        var zoomHandler = d3.zoom().on('zoom', zoomActions).scaleExtent([minZoom, maxZoom]);
+        zoomHandler(svg);
+
+        function fillColor(d) {
+            return 'blue';
+        }
+        SVGCircleElement
+        function linkColor(d) {
+            if (d.group == 0) {
+                return 'green';
+            } else {
+                return 'red';
             }
-            link.source.links.push(link.target);
-            if (!link.target.links) {
-                link.target.links = [];
-            }
-            link.target.links.push(link.source);
-        });
+        }
 
-        // Compute positions based on distance from root
-        var setPosition = function (node, i, depth) {
-            if (!depth) {
-                depth = 0;
-            }
-            if (!node.x) {
-                node.x = (i + 1) * 40;
-                node.y = (depth + 1) * 40;
-                if (depth <= 1) {
-                    node.links.each(function (d, i2) {
-                        setPosition(d, i2, depth + 1);
-                    });
-                }
+        function dragStart(event, d) {
+            console.log('dragEnd');
+            console.log(event);
+            console.log(d);
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+        
+        function dragDrag(event, d) {
+            console.log('dragEnd');
+            console.log(event);
+            console.log(d);
+            d.fx = event.x;
+            d.fy = event.y;
+        }
 
-            }
+        function dragEnd(event, d) {
+            console.log('dragEnd');
+            console.log(event);
+            console.log(d);
 
-        };
-        nodes.each(setPosition);
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
 
-        // Update inserted elements with computed positions
-        nodes.attr('transform', function (d) {
-            return 'translate(' + d.x + ', ' + d.y + ')';
-        });
+        function zoomActions(event) {
+            g.attr('transform', event.transform);
+        }
 
-        links.attr('x1', function (d) {
-            return d.source.x;
-        }).attr('y1', function (d) {
-            return d.source.y;
-        }).attr('x2', function (d) {
-            return d.target.x;
-        }).attr('y2', function (d) {
-            return d.target.y;
-        });
+        function tickActions() {
+            node
+                .attr('cx', (d:any) => {console.log('tick actions'); console.log(d); return d.x;})
+                .attr('cy', (d:any) => d.y);
+            nodeText
+                .attr('cx', (d:any) => {console.log('tick actions'); console.log(d); return d.x;})
+                .attr('cy', (d:any) => d.y);
+
+            link
+                .attr('x1', (d:any) => d.source.x)
+                .attr('y1', (d:any) => d.source.y)
+                .attr('x2', (d:any) => d.target.x)
+                .attr('y2', (d:any) => d.target.y);
+        }
+
     });
 }
 
