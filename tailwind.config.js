@@ -1,7 +1,3 @@
 module.exports = {
-    content: ["./src/views/*.{html,js}"],
-    theme: {
-        extend: {},
-    },
-    plugins: [],
+    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html']
 }

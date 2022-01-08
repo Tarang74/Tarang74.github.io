@@ -1,8 +1,8 @@
 import { updateOptions, getUnitData } from './unit_select';
 import * as d3 from 'd3';
-import { D3DragEvent, DragBehavior, SimulationNodeDatum, SubjectPosition } from 'd3';
+import { D3DragEvent, SimulationNodeDatum, SubjectPosition } from 'd3';
 
-const container = document.getElementById("app");
+const container = document.getElementById('app');
 const width = container.clientWidth;
 const height = container.clientHeight;
 
@@ -15,8 +15,7 @@ const svg = d3
     .attr('width', width)
     .attr('height', height);
 
-svg
-    .append('defs')
+svg.append('defs')
     .append('marker')
     .attr('id', 'arrow')
     .attr('viewBox', [0, 0, 20, 20])
@@ -33,7 +32,9 @@ const rectHeight = 15;
 function updateCanvas(json: NetworkNode) {
     return new Promise(() => {
         // Simulation object
-        var simulation = d3.forceSimulation(json.nodes as d3.SimulationNodeDatum[]);
+        var simulation = d3.forceSimulation(
+            json.nodes as d3.SimulationNodeDatum[]
+        );
 
         // Forces
         var chargeForce = d3.forceManyBody().strength(-200);
@@ -46,8 +47,7 @@ function updateCanvas(json: NetworkNode) {
             .force('links', linkForce);
 
         // Main group
-        var g = svg.append('g')
-            .attr('class', 'zoom-group');
+        var g = svg.append('g').attr('class', 'zoom-group');
 
         // Node group
         var node = g
@@ -57,24 +57,24 @@ function updateCanvas(json: NetworkNode) {
             .data(json.nodes)
             .enter()
             .append('g')
-            .attr('transform', (d: any) => `translate(${d.x}, ${d.y})`)
+            .attr('transform', (d: any) => `translate(${d.x}, ${d.y})`);
 
         // Node rect
-        node
-            .append('rect')
+        node.append('rect')
             .attr('class', 'node')
             .attr('height', rectHeight)
-            .style('fill', d => d.group != undefined ? d.group : 'blue')
+            .style('fill', (d) => (d.group != undefined ? d.group : 'blue'));
 
         // Node text
-        node
-            .append('text')
-            .text(d => d.name)
+        node.append('text')
+            .text((d) => d.name)
             .style('font-size', '12px')
             .attr('dy', '1em');
 
-        node        
-            .attr('width', d => this.childNodes[1].getComputedTextLength() + 20)
+        node.attr(
+            'width',
+            (d) => this.childNodes[1].getComputedTextLength() + 20
+        );
 
         // Link line
         var link = g
@@ -89,36 +89,65 @@ function updateCanvas(json: NetworkNode) {
             .attr('fill', 'none');
 
         // Global events
-        var dragHandler = d3.drag()
-            .on('start', (event: D3DragEvent<SVGSVGElement, SimulationNodeDatum, SubjectPosition>, d: d3.SimulationNodeDatum) => {
-                if (!event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-            })
-            .on('drag', (event: D3DragEvent<SVGSVGElement, SimulationNodeDatum, SubjectPosition>, d: d3.SimulationNodeDatum) => {
-                d.fx = event.x;
-                d.fy = event.y;
-            })
-            .on('end', (event: D3DragEvent<SVGSVGElement, SimulationNodeDatum, SubjectPosition>, d: d3.SimulationNodeDatum) => {
-                if (!event.active) simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
-            });
+        var dragHandler = d3
+            .drag()
+            .on(
+                'start',
+                (
+                    event: D3DragEvent<
+                        SVGSVGElement,
+                        SimulationNodeDatum,
+                        SubjectPosition
+                    >,
+                    d: d3.SimulationNodeDatum
+                ) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+            )
+            .on(
+                'drag',
+                (
+                    event: D3DragEvent<
+                        SVGSVGElement,
+                        SimulationNodeDatum,
+                        SubjectPosition
+                    >,
+                    d: d3.SimulationNodeDatum
+                ) => {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                }
+            )
+            .on(
+                'end',
+                (
+                    event: D3DragEvent<
+                        SVGSVGElement,
+                        SimulationNodeDatum,
+                        SubjectPosition
+                    >,
+                    d: d3.SimulationNodeDatum
+                ) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                }
+            );
         dragHandler(node);
 
         var zoomHandler = d3
             .zoom()
-            .on('zoom', event => g.attr('transform', event.transform))
+            .on('zoom', (event) => g.attr('transform', event.transform))
             .scaleExtent([minZoom, maxZoom]);
         zoomHandler(svg);
 
         // Initialise simulation
         simulation.on('tick', () => {
-            node
-                .attr('transform', (d: any) => `translate(${d.x}, ${d.y})`);
+            node.attr('transform', (d: any) => `translate(${d.x}, ${d.y})`);
 
-            link
-                .attr('x1', (d: any) => d.source.x)
+            link.attr('x1', (d: any) => d.source.x)
                 .attr('y1', (d: any) => d.source.y)
                 .attr('x2', (d: any) => d.target.x)
                 .attr('y2', (d: any) => d.target.y);
@@ -140,17 +169,21 @@ function findNodesRecursively(l: Unit[]): Array<[string, number, number]> {
         for (let j = 0; j < lenJ; j++) {
             // Disjunction
             let newNode: string;
-            if (typeof (l[i][1][j]) == 'object') {
+            if (typeof l[i][1][j] == 'object') {
                 // Conjunction
                 let lenK: number = l[i][1][j].length;
                 for (let k = 0; k < lenK; k++) {
                     newNode = l[i][1][j][k];
-                    nodes.indexOf([newNode, i, j]) === -1 ? nodes.push([newNode, i, j]) : {};
+                    nodes.indexOf([newNode, i, j]) === -1
+                        ? nodes.push([newNode, i, j])
+                        : {};
                 }
-            } else if (typeof (l[i][1][j]) == 'string') {
+            } else if (typeof l[i][1][j] == 'string') {
                 // String literal
                 newNode = l[i][1][j] as string;
-                nodes.indexOf([newNode, i, j]) === -1 ? nodes.push([newNode, i, j]) : {};
+                nodes.indexOf([newNode, i, j]) === -1
+                    ? nodes.push([newNode, i, j])
+                    : {};
             }
         }
     }
@@ -163,15 +196,21 @@ function formatNode(l: Array<[string, number, number]>): NetworkNode {
     var currentHeadIndex = -1;
     var currentHead = '';
 
-    l.forEach(element => {
-        network.nodes.map(e => e.name).indexOf(element[0]) === -1 ? network.nodes.push({ name: element[0] }) : {};
+    l.forEach((element) => {
+        network.nodes.map((e) => e.name).indexOf(element[0]) === -1
+            ? network.nodes.push({ name: element[0] })
+            : {};
         if (element[1] != currentHeadIndex) {
             // Head node
             currentHead = element[0];
             currentHeadIndex++;
         } else {
             // Children of head node
-            network.links.push({ source: currentHead, target: element[0], group: element[2] });
+            network.links.push({
+                source: currentHead,
+                target: element[0],
+                group: element[2]
+            });
         }
     });
 
@@ -179,7 +218,7 @@ function formatNode(l: Array<[string, number, number]>): NetworkNode {
 }
 
 function selection() {
-    updateOptions(selectElement).then(resolve => {
+    updateOptions(selectElement).then((resolve) => {
         if (resolve) {
             var requiredNodes: Unit[] = [];
             requiredNodes = getUnitData();
@@ -193,11 +232,11 @@ function selection() {
 
 // Selection
 /* Event listener */
-const selectElement = <HTMLInputElement>document.getElementById("select-units");
+const selectElement = <HTMLInputElement>document.getElementById('select-units');
 export var output: NetworkNode;
 
-selectElement.addEventListener("input", selection);
-selectElement.addEventListener("focus", () => {
+selectElement.addEventListener('input', selection);
+selectElement.addEventListener('focus', () => {
     if (selectElement.value != '') {
         selection();
     }

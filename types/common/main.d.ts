@@ -1,6 +1,7 @@
 type NetworkNode = {
         nodes: Array<{
-            name: string
+            name: string,
+            group?: number
         }>,
         links: Array<{
             source: string,

@@ -1,10 +1,23 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-		"module": "commonjs",
-		"resolveJsonModule": true,
-		"esModuleInterop": true,
-		"sourceMap": true,
-		"typeRoots": ["./src/ts/types"]
-	}
+    "include": [
+        "src",
+        "types"  
+    ],
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "ESNext",
+        "moduleResolution": "node",
+        "jsx": "preserve",
+        "baseUrl": "src",
+
+        "noEmit": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        
+        "esModuleInterop": true,
+        "types": ["mocha", "snowpack-env"],
+        "typeRoots": ["./types", "./src"]
+    }
 }

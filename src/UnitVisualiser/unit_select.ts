@@ -1,7 +1,7 @@
-import data from '../data/parsed_data2022.json';
+import data from './parsed_data2022.json';
 
 export function updateOptions(select: HTMLInputElement) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         checkForScroll();
 
         var input: string = select.value.toUpperCase();
@@ -44,14 +44,23 @@ export function updateOptions(select: HTMLInputElement) {
                     ul.appendChild(li[i]);
                 }
 
-                li.forEach(element => {
-                    element.addEventListener('click', () => {
-                        addUnitsToSelection(element.id as unknown as number);
-                        resolve(true);
-                    }, true);
+                li.forEach((element) => {
+                    element.addEventListener(
+                        'click',
+                        () => {
+                            addUnitsToSelection(
+                                element.id as unknown as number
+                            );
+                            resolve(true);
+                        },
+                        true
+                    );
                 });
-                
-                document.addEventListener('click', () => {closeOptions(); resolve(false);});
+
+                document.addEventListener('click', () => {
+                    closeOptions();
+                    resolve(false);
+                });
             }
         } else {
             closeOptions();
@@ -61,7 +70,7 @@ export function updateOptions(select: HTMLInputElement) {
 }
 
 function checkForScroll() {
-    let selectContainer = document.getElementById("select-units-container");
+    let selectContainer = document.getElementById('select-units-container');
     let dim = selectContainer.getBoundingClientRect();
     let top = dim.y + dim.height;
 
@@ -99,7 +108,10 @@ export function getUnitData(): Unit[] {
     // Use indices to find nodes (and children)
     var recursiveUnits: Unit[] = [];
     for (let i = 0; i < selectedUnits.length; i++) {
-        recursiveUnits.push([units[selectedUnits[i]], prerequisites[selectedUnits[i]]]);
+        recursiveUnits.push([
+            units[selectedUnits[i]],
+            prerequisites[selectedUnits[i]]
+        ]);
     }
     return recursiveUnits;
 }
@@ -107,12 +119,15 @@ export function getUnitData(): Unit[] {
 // Units and corresponding prerequisites
 var units: Array<string> = [];
 var prerequisites: Array<Array<Array<string> | string>> = [];
-data.Units.forEach((value, index, array) => { units.push(value.unit_code); prerequisites.push(value.prerequisites) });
+data.Units.forEach((value, index, array) => {
+    units.push(value.unit_code);
+    prerequisites.push(value.prerequisites);
+});
 
 var selectedUnits: Array<number> = [];
 
 // Options list
-var ul: HTMLElement = document.getElementById("select-options");
+var ul: HTMLElement = document.getElementById('select-options');
 
 // Initialise ul
 closeOptions();
