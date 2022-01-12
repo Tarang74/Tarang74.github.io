@@ -1,6 +1,3 @@
 .vscode
 node_modules
-dist
-src/css/input.css
-src/ts/*.js
-src/ts/*.js.map
+build

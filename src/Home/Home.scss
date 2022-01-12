@@ -1,0 +1,24 @@
+.hero-text-string {
+    white-space: pre;
+    display: inline;
+}
+
+.hero-text-character {
+    white-space: pre;
+    display: inline;
+    animation: textEnter 1s ease-in;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+@keyframes textEnter {
+    0% {
+        opacity: 0%;
+        margin-left: -2rem;
+    }
+
+    100% {
+        opacity: 100%;
+        margin-left: 0;
+    }
+}

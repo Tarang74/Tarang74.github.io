@@ -17,9 +17,6 @@ export default {
         ],
         '@snowpack/plugin-postcss',
     ],
-    packageOptions: {
-        
-    },
     devOptions: {
         port: 8080,
         tailwindConfig: './tailwind.config.js'

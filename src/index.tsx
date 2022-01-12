@@ -1,31 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Hero from './Home/Hero';
-import WhatIDo from './Home/WhatIDo';
-import Projects from './Home/Projects';
-import Accomplishments from './Home/Accomplishments';
-import Footer from './Home/Footer';
+import Hero from './home/Hero';
+import Footer from './home/Footer';
 
-import "./index.css";
 import './index.scss';
+import { TextEntrance } from './home/Hero';
 
-ReactDOM.render(
-    <React.StrictMode>
-        <Hero />
-        <WhatIDo />
-        <Projects />
-        <Accomplishments />
-    </React.StrictMode>,
-    document.getElementById('root')
-);
+let p = new Promise((resolve) => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <Hero />
+        </React.StrictMode>,
+        document.getElementById('main-root')
+    );
+    
+    ReactDOM.render(
+        <React.StrictMode>
+            <Footer />
+        </React.StrictMode>,
+        document.getElementById('footer-root')
+    );
 
-// ReactDOM.render(
-//     <React.StrictMode>
-//         <Footer />
-//     </React.StrictMode>,
-//     document.getElementById('root-footer')
-// );
+    resolve(true);
+});
+
+function main() {
+    var a = new TextEntrance("Let's get started!");
+}
+
+p.then((resolveValue) => main());
 
 if (import.meta.hot) {
     import.meta.hot.accept();
