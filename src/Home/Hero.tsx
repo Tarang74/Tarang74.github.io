@@ -1,9 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { classnames } from 'tailwindcss-classnames';
+import {
+    alignItems,
+    backgroundColor,
+    classnames,
+    display,
+    flexDirection,
+    fontSize,
+    fontWeight,
+    gap,
+    height,
+    justifyContent,
+    padding,
+    textColor,
+    width
+} from 'tailwindcss-classnames';
 
-import './Home.scss';
+import './Hero.scss';
 
 export interface TextEntrance {
     textArray: string[];
@@ -16,14 +30,14 @@ export interface TextEntrance {
     updateString(): string;
 }
 export class TextEntrance {
-    constructor(heroText) {
+    constructor(heroText:string, parentContainer:ReactDOM.Container) {
         this.textArray = [...heroText].reverse();
         for (let i = 0; i < this.textArray.length; i++) {
             if (this.textArray[i] == ' ') {
                 this.textArray[i] == '\xA0';
             }
         }
-        console.log(this.textArray);
+        
         this.animatingCharacter = '';
         this.animatingString = '';
 
@@ -33,18 +47,23 @@ export class TextEntrance {
             ReactDOM.render(
                 <div
                     className={classnames(
-                        'text-9xl',
-                        'text-gray-200',
-                        'font-bold',
-                        'flex',
-                        'flex-row'
+                        fontSize('text-9xl'),
+                        textColor('text-gray-200'),
+                        fontWeight('font-bold'),
+                        display('flex'),
+                        flexDirection('flex-row'),
+                        justifyContent('justify-start'),
+                        alignItems('items-center')
                     )}
                     id="hero-text"
                 >
-                    <span className="hero-text-string" id="hero-text-string"></span>
+                    <span
+                        className="hero-text-string"
+                        id="hero-text-string"
+                    ></span>
                     <span className="hero-text-character" id={id}></span>
                 </div>,
-                document.getElementById('hero-container')
+                parentContainer
             );
             resolve(true);
         });
@@ -133,14 +152,14 @@ export default class Hero extends React.Component {
         return (
             <div
                 className={classnames(
-                    'bg-zinc-900',
-                    'flex',
-                    'justify-center',
-                    'flex-col',
-                    'gap-y-10',
-                    'px-24',
-                    'w-full',
-                    'h-screen'
+                    backgroundColor('bg-zinc-900'),
+                    display('flex'),
+                    justifyContent('justify-center'),
+                    flexDirection('flex-col'),
+                    gap('gap-y-10'),
+                    padding('px-24'),
+                    width('w-full'),
+                    height('h-screen')
                 )}
                 id="hero-container"
             ></div>

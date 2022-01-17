@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.about-text-container {
+    ul {
+        li {
+            span {
+                position: fixed;
+                line-height: 3rem;
+                font-size: 3rem;
+                margin: 0rem;
+                display: none;
+                width: fit-content;
+                max-width: 80vw;
+                left: 500%;
+            }
+            .active {
+                display: flex;
+            }
+
+            display: flex;
+            overflow: hidden;
+
+            background-color: rgba($color: #d34b4b, $alpha: 0.8);
+
+            :hover {
+                opacity: 0.5;
+                transition: opacity 0.5s ease-in;
+            }
+        }
+        transition: opacity 0.5s ease-in-out;
+        li:nth-of-type(1) {
+            span {
+                top: 20vh;
+            }
+        }
+        li:nth-of-type(2) {
+            span {
+                top: 60vh;
+            }
+        }
+        gap: 175vh;
+        padding-bottom: 400vh;
+    }
+    width: 100%;
+    padding-top: 125vh;
+    padding-bottom: 125vh;
+}

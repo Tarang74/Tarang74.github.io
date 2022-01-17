@@ -1,19 +1,28 @@
 import React from 'react';
 
-import { classnames } from 'tailwindcss-classnames';
+import {
+    alignItems,
+    classnames,
+    display,
+    flexDirection,
+    fontSize,
+    justifyContent,
+    padding,
+    textColor
+} from 'tailwindcss-classnames';
 
 export default function Footer() {
     return (
         <div
             className={classnames(
-                'flex',
-                'text-sm',
-                'text-gray-100',
-                'justify-between',
-                'items-center',
-                'flex-col',
-                'px-32',
-                'py-24'
+                display('flex'),
+                fontSize('text-sm'),
+                textColor('text-gray-100'),
+                justifyContent('justify-between'),
+                alignItems('items-center'),
+                flexDirection('flex-col'),
+                padding('px-32'),
+                padding('py-24')
             )}
         >
             <div>

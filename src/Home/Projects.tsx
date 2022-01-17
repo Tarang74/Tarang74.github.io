@@ -1,29 +1,48 @@
 import React from 'react';
 
-import { classnames } from 'tailwindcss-classnames';
+import {
+    alignItems,
+    backgroundColor,
+    classnames,
+    display,
+    flexDirection,
+    fontSize,
+    fontWeight,
+    gap,
+    height,
+    justifyContent,
+    padding,
+    textAlign,
+    textColor,
+    width
+} from 'tailwindcss-classnames';
 
 export default function Projects() {
     return (
         <div
             className={classnames(
-                'bg-white',
-                'text-center',
-                'flex',
-                'justify-center',
-                'items-center',
-                'flex-col',
-                'gap-y-4',
-                'py-52',
-                'w-full',
-                'h-full'
+                backgroundColor('bg-white'),
+                textAlign('text-center'),
+                display('flex'),
+                justifyContent('justify-center'),
+                alignItems('items-center'),
+                flexDirection('flex-col'),
+                gap('gap-y-4'),
+                padding('py-52'),
+                width('w-full'),
+                height('h-full')
             )}
         >
             <div
-                className={classnames('text-4xl', 'text-gray-800', 'font-bold')}
+                className={classnames(
+                    fontSize('text-4xl'),
+                    textColor('text-gray-800'),
+                    fontWeight('font-bold')
+                )}
             >
                 Projects
             </div>
-            <a href="./unit_visualiser.html">Click here</a>
+            <a href="">Click here</a>
         </div>
     );
 }

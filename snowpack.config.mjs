@@ -1,12 +1,21 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
     mount: {
-        public: {url: '/', static: true},
-        src: {url: "/dist"}
+        public: { url: '/', static: true },
+        src: { url: '/dist' }
     },
     plugins: [
         '@snowpack/plugin-react-refresh',
         '@snowpack/plugin-dotenv',
+        [
+            '@snowpack/plugin-optimize',
+            {
+                minifyJS: true,
+                minifyCSS: true,
+                minifyHTML: true,
+                preloadCSS: true
+            }
+        ],
         '@snowpack/plugin-typescript',
         [
             '@snowpack/plugin-sass',
@@ -23,7 +32,7 @@ export default {
     },
     buildOptions: {
         baseUrl: '/',
-        out: 'dist'
+        out: 'build'
     },
     optimize: {
         minify: true,

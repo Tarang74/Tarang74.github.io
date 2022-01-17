@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .hero-text-string {
     white-space: pre;
     display: inline;
@@ -6,19 +10,20 @@
 .hero-text-character {
     white-space: pre;
     display: inline;
-    animation: textEnter 1s ease-in;
+    animation: textEnter 0.11s;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
     animation-direction: normal;
     animation-fill-mode: forwards;
 }
 
 @keyframes textEnter {
     0% {
-        opacity: 0%;
-        margin-left: -2rem;
+        color: transparent;
+        margin-left: -1rem;
     }
 
     100% {
-        opacity: 100%;
+        color: inherit;
         margin-left: 0;
     }
 }
