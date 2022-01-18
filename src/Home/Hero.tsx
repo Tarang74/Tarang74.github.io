@@ -30,14 +30,14 @@ export interface TextEntrance {
     updateString(): string;
 }
 export class TextEntrance {
-    constructor(heroText:string, parentContainer:ReactDOM.Container) {
+    constructor(heroText: string, parentContainer: ReactDOM.Container) {
         this.textArray = [...heroText].reverse();
         for (let i = 0; i < this.textArray.length; i++) {
             if (this.textArray[i] == ' ') {
                 this.textArray[i] == '\xA0';
             }
         }
-        
+
         this.animatingCharacter = '';
         this.animatingString = '';
 

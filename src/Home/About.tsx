@@ -57,52 +57,55 @@ export class RevealOnScroll {
                 // 0: bottom of page
                 // 100: gap between li
 
-                // Small means faster
-                const speedMultiplier: number = 0.75;
-
                 let totalHorizontalScrollDistance =
                     RevealOnScroll.viewportWidth -
                     RevealOnScroll.aboutPaddingLeft;
-                let totalVerticalScrollDistance =
-                    speedMultiplier * RevealOnScroll.viewportWidth;
+                let totalVerticalScrollDistance = RevealOnScroll.viewportHeight;
 
                 let currentVerticalScroll =
                     RevealOnScroll.viewportHeight -
                     li.getBoundingClientRect().top;
 
-                if (this.index == 1) {
-                    if (
+                if (
+                    (this.index == 0 &&
                         currentVerticalScroll >=
-                        1.5 * totalVerticalScrollDistance
-                    ) {
-                        // End horizontal section
-                        RevealOnScroll.endHorizontalScroll = true;
-                    } else {
-                        RevealOnScroll.endHorizontalScroll = false;
-                    }
+                            3.25 * RevealOnScroll.viewportHeight) ||
+                    (this.index == 1 &&
+                        currentVerticalScroll >=
+                            1.5 * RevealOnScroll.viewportHeight)
+                ) {
+                    // End horizontal section
+                    RevealOnScroll.endHorizontalScroll = true;
+                } else {
+                    RevealOnScroll.endHorizontalScroll = false;
                 }
 
-                console.log('CurrentScroll', this.index, currentVerticalScroll);
                 if (RevealOnScroll.endHorizontalScroll) {
                     if (this.index == 0) {
-                        var top =
-                            0.2 *
-                            RevealOnScroll.viewportHeight *
-                            (1 -
-                                ((1.75 + 4) * RevealOnScroll.viewportHeight -
-                                    currentVerticalScroll) /
-                                    (2.5 * RevealOnScroll.viewportHeight));
+                        let percent =
+                            (5.25 * RevealOnScroll.viewportHeight -
+                                currentVerticalScroll) /
+                            (2 * RevealOnScroll.viewportHeight);
+
+                        var top = 0.2 * RevealOnScroll.viewportHeight * percent;
+
+                        var opacity = percent;
                     } else if (this.index == 1) {
-                        var top =
-                            0.6 *
-                            RevealOnScroll.viewportHeight *
-                            (1 -
-                                (4 * RevealOnScroll.viewportHeight -
-                                    currentVerticalScroll) /
-                                    (2.5 * RevealOnScroll.viewportHeight));
+                        let percent =
+                            (3.5 * RevealOnScroll.viewportHeight -
+                                currentVerticalScroll) /
+                            (2 * RevealOnScroll.viewportHeight);
+
+                        var top = 0.6 * RevealOnScroll.viewportHeight * percent;
+
+                        var opacity = percent;
                     }
-                    console.log('Top', this.index, top);
-                    span.style.cssText = `left:${RevealOnScroll.aboutPaddingLeft}px;top:${top}px;`;
+                    if (top <= 0) {
+                        span.classList.remove('active');
+                    } else {
+                        span.classList.add('active');
+                        span.style.cssText = `left:${RevealOnScroll.aboutPaddingLeft}px;top:${top}px;opacity:${opacity}`;
+                    }
                 } else {
                     if (currentVerticalScroll >= totalVerticalScrollDistance) {
                         currentVerticalScroll = totalVerticalScrollDistance;
