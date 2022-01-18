@@ -180,8 +180,8 @@ export default function About() {
                     </li>
                     <li>
                         <span id="about-text-2">
-                            I am a student at the Queensland currently studying
-                            Engineering (Honours) and Mathematics at QUT.
+                            I am a student at the <a className={classnames(display('contents'))} href="https://qut.edu.au">Queensland University of Technology</a>, 
+                            currently studying Engineering (Honours) and Mathematics.
                         </span>
                     </li>
                 </ul>

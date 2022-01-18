@@ -7,29 +7,35 @@
         li {
             span {
                 position: fixed;
+                display: none;
+
+                font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
                 line-height: 3rem;
                 font-size: 3rem;
-                margin: 0rem;
-                display: none;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 700;
+
                 width: fit-content;
                 max-width: 80vw;
+                margin: 0;
                 left: 500%;
+
+                transition: color 3.5s ease-in-out;
             }
+
+            span:hover {
+                color: rgb(24, 23, 75);
+            }
+
             .active {
                 display: flex;
             }
 
             display: flex;
             overflow: hidden;
-
-            background-color: rgba($color: #d34b4b, $alpha: 0.8);
-
-            :hover {
-                opacity: 0.5;
-                transition: opacity 0.5s ease-in;
-            }
         }
-        transition: opacity 0.5s ease-in-out;
+
         li:nth-of-type(1) {
             span {
                 top: 20vh;
@@ -40,9 +46,11 @@
                 top: 60vh;
             }
         }
+
         gap: 175vh;
         padding-bottom: 400vh;
     }
+
     width: 100%;
     padding-top: 125vh;
     padding-bottom: 125vh;
