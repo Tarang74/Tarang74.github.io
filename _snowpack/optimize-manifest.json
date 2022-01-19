@@ -1,0 +1,16 @@
+{
+  "imports": {
+    "/index.html": {
+      "entry": [
+        "/dist/index.js"
+      ],
+      "css": [
+        "/dist/index.css"
+      ],
+      "js": [
+        "/dist/index.js"
+      ]
+    }
+  },
+  "generated": {}
+}
