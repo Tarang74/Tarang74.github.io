@@ -3,17 +3,24 @@
 @tailwind utilities;
 
 .hero-text-string {
-    white-space: pre;
-    display: inline;
+    display: contents;
 }
 
 .hero-text-character {
-    white-space: pre;
-    display: inline;
+    display: contents;
     animation: textEnter 0.11s;
     animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
     animation-direction: normal;
     animation-fill-mode: forwards;
+}
+
+#hero-container {
+    background: rgb(24, 24, 27);
+    background: linear-gradient(
+        180deg,
+        rgba(24, 24, 27, 1) 0%,
+        rgba(0, 0, 0, 1) 100%
+    );
 }
 
 @keyframes textEnter {

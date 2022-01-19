@@ -15,7 +15,7 @@ import {
     textAlign,
     textColor,
     width
-} from 'tailwindcss-classnames';
+} from '../tailwindcss-classnames-cli';
 
 export default function Projects() {
     return (

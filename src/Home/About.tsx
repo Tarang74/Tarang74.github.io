@@ -10,7 +10,7 @@ import {
     justifyContent,
     padding,
     width
-} from 'tailwindcss-classnames';
+} from '../tailwindcss-classnames-cli';
 
 import './About.scss';
 
@@ -23,6 +23,9 @@ export class RevealOnScroll {
     static aboutPaddingLeft: number;
     static viewportWidth: number;
     static viewportHeight: number;
+
+    static TOP1: number;
+    static TOP2: number;
 
     static endHorizontalScroll: boolean = false;
 
@@ -87,7 +90,10 @@ export class RevealOnScroll {
                                 currentVerticalScroll) /
                             (2 * RevealOnScroll.viewportHeight);
 
-                        var top = 0.2 * RevealOnScroll.viewportHeight * percent;
+                        var top =
+                            RevealOnScroll.TOP1 *
+                            RevealOnScroll.viewportHeight *
+                            percent;
 
                         var opacity = percent;
                     } else if (this.index == 1) {
@@ -96,7 +102,10 @@ export class RevealOnScroll {
                                 currentVerticalScroll) /
                             (2 * RevealOnScroll.viewportHeight);
 
-                        var top = 0.6 * RevealOnScroll.viewportHeight * percent;
+                        var top =
+                            RevealOnScroll.TOP2 *
+                            RevealOnScroll.viewportHeight *
+                            percent;
 
                         var opacity = percent;
                     }
@@ -130,7 +139,6 @@ export class RevealOnScroll {
                 entry.target.children[0].classList.add('active');
             } else {
                 window.addEventListener('scroll', scrollVertically);
-                // entry.target.children[0].classList.remove('active');
             }
         });
     }
@@ -147,6 +155,14 @@ export class RevealOnScroll {
 
         RevealOnScroll.viewportWidth = window.innerWidth;
         RevealOnScroll.viewportHeight = window.innerHeight;
+
+        if (RevealOnScroll.viewportWidth <= 1024) {
+            RevealOnScroll.TOP1 = 0.15;
+            RevealOnScroll.TOP2 = 0.5;
+        } else {
+            RevealOnScroll.TOP1 = 0.2;
+            RevealOnScroll.TOP2 = 0.6;
+        }
     }
 }
 
@@ -159,12 +175,16 @@ export default function About() {
                 justifyContent('justify-start'),
                 alignItems('items-start'),
                 flexDirection('flex-col'),
-                padding('px-24'),
+                padding('px-10', 'sm:px-16', 'lg:px-24'),
                 width('w-full')
             )}
             id="about-container"
         >
-            <div className="about-text-container">
+            <div
+                className={
+                    'about-text-container ' + classnames(width('w-full'))
+                }
+            >
                 <ul
                     className={classnames(
                         display('flex'),
@@ -180,8 +200,15 @@ export default function About() {
                     </li>
                     <li>
                         <span id="about-text-2">
-                            I am a student at the <a className={classnames(display('contents'))} href="https://qut.edu.au">Queensland University of Technology</a>, 
-                            currently studying Engineering (Honours) and Mathematics.
+                            I am a student at the{' '}
+                            <a
+                                className={classnames(display('contents'))}
+                                href="https://qut.edu.au"
+                            >
+                                Queensland University of Technology
+                            </a>
+                            , currently studying Engineering (Honours) and
+                            Mathematics.
                         </span>
                     </li>
                 </ul>

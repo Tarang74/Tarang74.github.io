@@ -9,7 +9,7 @@ import {
     justifyContent,
     padding,
     textColor
-} from 'tailwindcss-classnames';
+} from '../tailwindcss-classnames-cli';
 
 export default function Footer() {
     return (

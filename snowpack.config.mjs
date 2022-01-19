@@ -1,5 +1,8 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
+    exclude: [
+        '/src/home/Projects.tsx'
+    ],
     mount: {
         public: { url: '/', static: true },
         src: { url: '/dist' }

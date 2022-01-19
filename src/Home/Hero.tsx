@@ -9,13 +9,12 @@ import {
     flexDirection,
     fontSize,
     fontWeight,
-    gap,
     height,
     justifyContent,
     padding,
     textColor,
     width
-} from 'tailwindcss-classnames';
+} from '../tailwindcss-classnames-cli';
 
 import './Hero.scss';
 
@@ -47,7 +46,14 @@ export class TextEntrance {
             ReactDOM.render(
                 <div
                     className={classnames(
-                        fontSize('text-9xl'),
+                        fontSize(
+                            'text-6xl',
+                            'sm:text-7xl',
+                            'md:text-7xl',
+                            'lg:text-7xl',
+                            'xl:text-8xl',
+                            '2xl:text-9xl'
+                        ),
                         textColor('text-gray-200'),
                         fontWeight('font-bold'),
                         display('flex'),
@@ -152,14 +158,19 @@ export default class Hero extends React.Component {
         return (
             <div
                 className={classnames(
-                    backgroundColor('bg-zinc-900'),
                     display('flex'),
                     justifyContent('justify-center'),
                     flexDirection('flex-col'),
-                    gap('gap-y-10'),
-                    padding('px-24'),
                     width('w-full'),
-                    height('h-screen')
+                    height('h-screen'),
+                    padding(
+                        'px-14',
+                        'sm:px-20',
+                        'md:px-24',
+                        'lg:px-28',
+                        'xl:px-28',
+                        '2xl:px-24'
+                    )
                 )}
                 id="hero-container"
             ></div>

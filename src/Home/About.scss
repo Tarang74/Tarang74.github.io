@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .top-15vh {
+        @apply top-[15vh];
+    }
+
+    .top-20vh {
+        @apply top-[20vh];
+    }
+
+    .top-50vh {
+        @apply top-[50vh];
+    }
+
+    .top-60vh {
+        @apply top-[60vh];
+    }
+}
+
 .about-text-container {
     ul {
         li {
@@ -10,14 +28,16 @@
                 display: none;
 
                 font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
-                line-height: 3rem;
-                font-size: 3rem;
+
+                @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl;
+
                 font-style: normal;
                 font-variant: normal;
                 font-weight: 700;
 
                 width: fit-content;
                 max-width: 80vw;
+
                 margin: 0;
                 left: 500%;
 
@@ -25,7 +45,7 @@
             }
 
             span:hover {
-                color: rgb(24, 23, 75);
+                color: rgb(28, 28, 46);
             }
 
             .active {
@@ -38,12 +58,12 @@
 
         li:nth-of-type(1) {
             span {
-                top: 20vh;
+                @apply top-15vh lg:top-20vh;
             }
         }
         li:nth-of-type(2) {
             span {
-                top: 60vh;
+                @apply top-50vh lg:top-60vh;
             }
         }
 
@@ -51,7 +71,6 @@
         padding-bottom: 400vh;
     }
 
-    width: 100%;
     padding-top: 125vh;
     padding-bottom: 125vh;
 }
