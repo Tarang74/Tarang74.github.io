@@ -43,6 +43,8 @@ function main() {
 
 p.then(main);
 
-// if (import.meta.hot) {
-//     import.meta.hot.accept();
-// }
+if (import.meta.env.NODE_ENV != 'production') {
+    if (import.meta.hot) {
+        import.meta.hot.accept();
+    }
+}
