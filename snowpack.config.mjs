@@ -1,24 +1,12 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
-    exclude: [
-        '/src/home/Projects.tsx'
-    ],
     mount: {
         public: { url: '/', static: true },
-        src: { url: '/dist' }
+        src: { url: '/dist', dot: true }
     },
     plugins: [
         '@snowpack/plugin-react-refresh',
         '@snowpack/plugin-dotenv',
-        [
-            '@snowpack/plugin-optimize',
-            {
-                minifyJS: true,
-                minifyCSS: true,
-                minifyHTML: true,
-                preloadCSS: true
-            }
-        ],
         '@snowpack/plugin-typescript',
         [
             '@snowpack/plugin-sass',
@@ -27,7 +15,7 @@ export default {
                 style: 'compressed'
             }
         ],
-        '@snowpack/plugin-postcss',
+        '@snowpack/plugin-postcss'
     ],
     devOptions: {
         port: 8080,
@@ -39,6 +27,10 @@ export default {
     },
     optimize: {
         minify: true,
-        bundle: true
+        bundle: true,
+        sourcemap: false,
+        treeshake: true,
+        splitting: true,
+        manifest: false
     }
 };

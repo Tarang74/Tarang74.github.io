@@ -43,6 +43,6 @@ function main() {
 
 p.then(main);
 
-if (import.meta.hot) {
-    import.meta.hot.accept();
-}
+// if (import.meta.hot) {
+//     import.meta.hot.accept();
+// }

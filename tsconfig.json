@@ -11,6 +11,7 @@
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
 
-        "types": ["mocha", "snowpack-env"]
+        "types": ["snowpack-env"],
+        "outDir": "build"
     }
 }

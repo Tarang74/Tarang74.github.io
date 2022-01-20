@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import {
     alignItems,
-    backgroundColor,
     classnames,
     display,
     flexDirection,

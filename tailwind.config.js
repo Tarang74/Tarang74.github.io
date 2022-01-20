@@ -1,9 +1,9 @@
 module.exports = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+    content: ['./src/**/*.tsx'],
     theme: {
         extend: {
             screens: {
-                'xs': '360px'
+                xs: '360px'
             }
         }
     }
