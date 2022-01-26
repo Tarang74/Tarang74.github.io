@@ -28,23 +28,17 @@ let p = new Promise((resolve) => {
 function main() {
     new TextEntrance(
         "Let's get started!",
-        document.getElementById('hero-container')
+        document.getElementById('hero-container')!
     );
 
     new RevealOnScroll(
-        document.getElementById('about-text-list').children[0],
+        document.getElementById('about-text-list')!.children[0],
         0
     );
     new RevealOnScroll(
-        document.getElementById('about-text-list').children[1],
+        document.getElementById('about-text-list')!.children[1],
         1
     );
 }
 
 p.then(main);
-
-if (import.meta.env.NODE_ENV != 'production') {
-    if (import.meta.hot) {
-        import.meta.hot.accept();
-    }
-}

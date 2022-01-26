@@ -1,8 +1,8 @@
 {
     "include": ["src"],
     "compilerOptions": {
-        "module": "ESNext",
-        "target": "ESNext",
+        "module": "ES2015",
+        "target": "ES2016",
         "moduleResolution": "node",
         "jsx": "react-jsx",
 

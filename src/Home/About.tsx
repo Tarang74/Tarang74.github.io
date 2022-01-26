@@ -84,31 +84,35 @@ export class RevealOnScroll {
                 }
 
                 if (RevealOnScroll.endHorizontalScroll) {
+                    let top: number;
+                    let opacity: number;
+
                     if (this.index == 0) {
                         let percent =
                             (5.25 * RevealOnScroll.viewportHeight -
                                 currentVerticalScroll) /
                             (2 * RevealOnScroll.viewportHeight);
 
-                        var top =
+                        top =
                             RevealOnScroll.TOP1 *
                             RevealOnScroll.viewportHeight *
                             percent;
 
-                        var opacity = percent;
-                    } else if (this.index == 1) {
+                        opacity = percent;
+                    } else {
                         let percent =
                             (3.5 * RevealOnScroll.viewportHeight -
                                 currentVerticalScroll) /
                             (2 * RevealOnScroll.viewportHeight);
 
-                        var top =
+                        top =
                             RevealOnScroll.TOP2 *
                             RevealOnScroll.viewportHeight *
                             percent;
 
-                        var opacity = percent;
+                        opacity = percent;
                     }
+
                     if (top <= 0) {
                         span.classList.remove('active');
                     } else {
@@ -145,7 +149,7 @@ export class RevealOnScroll {
 
     updateVariables(): void {
         let aboutElement: HTMLElement =
-            document.getElementById('about-container');
+            document.getElementById('about-container')!;
 
         RevealOnScroll.aboutPaddingLeft = parseInt(
             window

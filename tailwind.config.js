@@ -1,5 +1,6 @@
 module.exports = {
-    content: ['./src/**/*.tsx'],
+    content: ['./dist/**/*.html', './src/**/*.{js,jsx,ts,tsx}', './*.html'],
+    plugins: [require('@tailwindcss/forms'), require('daisyui')],
     theme: {
         extend: {
             screens: {

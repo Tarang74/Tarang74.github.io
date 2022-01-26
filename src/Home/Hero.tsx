@@ -85,14 +85,15 @@ export class TextEntrance {
             let p1 = new Promise((resolve1) => {
                 let p2 = new Promise((resolve2) => {
                     let id = 'hero-text-character-' + (n + 1).toString();
-                    document.getElementById(id).remove();
+                    document.getElementById(id)!.remove();
                     resolve2(true);
                 });
 
                 p2.then((resolveValue2) => {
                     if (resolveValue2) {
-                        var heroText = document.getElementById('hero-text');
+                        var heroText = document.getElementById('hero-text')!;
                         var newText = this.updateCharacter();
+
                         if (newText != undefined) {
                             var newDivNode = document.createElement('span');
 
@@ -104,14 +105,14 @@ export class TextEntrance {
                             newDivNode.innerHTML = newText;
                             heroText.appendChild(newDivNode);
 
-                            let heroCharacterCurr = document.getElementById(id);
+                            let heroCharacterCurr = document.getElementById(id)!;
                             heroCharacterCurr.addEventListener(
                                 'animationend',
                                 () => {
                                     var heroString =
                                         document.getElementById(
                                             'hero-text-string'
-                                        );
+                                        )!;
                                     heroString.innerHTML = this.updateString();
                                     n--;
                                     resolve1(true);
@@ -137,7 +138,7 @@ export class TextEntrance {
     }
 
     updateCharacter(): string {
-        this.animatingCharacter = this.textArray.pop();
+        this.animatingCharacter = this.textArray.pop()!;
         return this.animatingCharacter;
     }
 
