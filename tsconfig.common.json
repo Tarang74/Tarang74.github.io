@@ -1,0 +1,23 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "jsx": "react-jsx",
+
+        "noEmit": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+
+        "outDir": "dist",
+
+        "useDefineForClassFields": true,
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "allowJs": false,
+        "skipLibCheck": false,
+        "esModuleInterop": false,
+        "strict": true,
+        "isolatedModules": true,
+    },
+    "extends": "./tsconfig.paths.json"
+}

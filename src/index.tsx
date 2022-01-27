@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Hero, { TextEntrance } from './home/Hero';
-import About, { RevealOnScroll } from './home/About';
-import Footer from './home/Footer';
+import Hero, { TextEntrance } from '@components/Hero';
+import About, { RevealOnScroll } from '@components/About';
+import Footer from '@components/Footer';
 
-import './index.scss';
+import '@assets/styles/index.scss';
 
 let p = new Promise((resolve) => {
     ReactDOM.render(

@@ -13,9 +13,9 @@ import {
     padding,
     textColor,
     width
-} from '../tailwindcss-classnames-cli';
+} from '@assets/tailwindcss-classnames';
 
-import './Hero.scss';
+import './styles.scss';
 
 export interface TextEntrance {
     textArray: string[];

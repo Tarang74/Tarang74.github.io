@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
     alignItems,
     backgroundColor,
@@ -10,9 +8,9 @@ import {
     justifyContent,
     padding,
     width
-} from '../tailwindcss-classnames-cli';
+} from '@assets/tailwindcss-classnames';
 
-import './About.scss';
+import './styles.scss';
 
 export interface RevealOnScroll {
     index: number;

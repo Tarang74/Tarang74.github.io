@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
     alignItems,
     classnames,
@@ -9,7 +7,7 @@ import {
     justifyContent,
     padding,
     textColor
-} from '../tailwindcss-classnames-cli';
+} from '@assets/tailwindcss-classnames';
 
 export default function Footer() {
     return (
