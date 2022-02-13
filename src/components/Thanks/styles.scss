@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.thanks-logo-square {
+    @apply xs:w-[4rem] sm:w-[5rem] md:w-[6rem] lg:w-[6rem] xl:w-[8rem];
+    @apply xs:mx-[1rem] sm:mx-[1rem] md:mx-[1rem] lg:mx-[3rem] xl:mx-[4rem];
+    @apply xs:my-[1rem] sm:my-[1rem] md:my-[1rem] lg:my-[2rem] xl:my-[2rem];
+}
+
+.thanks-logo {
+    @apply xs:w-[6rem] sm:w-[7rem] md:w-[8rem] lg:w-[10rem] xl:w-[12rem];
+    @apply xs:mx-[1rem] sm:mx-[1rem] md:mx-[1rem] lg:mx-[2rem] xl:mx-[2rem];
+    @apply xs:my-[1rem] sm:my-[1rem] md:my-[1rem] lg:my-[2rem] xl:my-[2rem];
+}

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+footer {
+    background-color: #080211;
+    background-image: linear-gradient(to top, #b3f1f1 0%, #40038a 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+
+    @apply md:px-[8rem] lg:px-[10rem] xl:px-[15rem];
+    @apply md:py-[3rem] lg:py-[4rem] xl:py-[5rem];
+}
+
+.footer-background {
+    filter: blur(5rem);
+}
