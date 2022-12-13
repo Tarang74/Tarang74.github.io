@@ -1,0 +1,58 @@
+{
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "export": "next export",
+        "start": "next start",
+        "format": "eslint src pages --fix",
+        "lint": "eslint src pages --ext .ts,.tsx,.js",
+        "format-prettier": "prettier --write src pages",
+        "prepare": "husky install",
+        "test": "jest --watch",
+        "generate-css-types": "tailwindcss-classnames -i tailwind.config.js -o src/styles/tailwindcss-classnames/index.ts"
+    },
+    "dependencies": {
+        "devicon": "^2.15.1",
+        "next": "^12.2.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^17.0.3",
+        "@commitlint/config-conventional": "^17.0.3",
+        "@heroicons/react": "^1.0.6",
+        "@tailwindcss/forms": "^0.5.2",
+        "@types/node": "18",
+        "@types/react": "^18.0.15",
+        "@types/react-dom": "^18.0.6",
+        "@typescript-eslint/eslint-plugin": "^5.31.0",
+        "@typescript-eslint/parser": "^5.31.0",
+        "autoprefixer": "^10.4.8",
+        "daisyui": "^2.20.0",
+        "eslint": "^8.20.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-watch": "^8.0.0",
+        "husky": "^8.0.1",
+        "postcss": "^8.4.14",
+        "prettier": "^2.7.1",
+        "sass": "^1.54.0",
+        "tailwindcss": "^3.1.7",
+        "typescript": "^4.7.4"
+    },
+    "name": "portfolio",
+    "description": "My portfolio",
+    "version": "4.0.2",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Tarang74/Tarang74.github.io.git"
+    },
+    "author": "Tarang Janawalkar",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Tarang74/Tarang74.github.io/issues"
+    },
+    "homepage": "https://github.com/Tarang74/Tarang74.github.io#readme"
+}

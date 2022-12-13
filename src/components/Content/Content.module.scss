@@ -1,0 +1,13 @@
+.contentContainer {
+    background-color: rgb(252, 245, 245);
+    @apply flex flex-col justify-start items-center;
+    @apply py-36 md:py-80;
+    margin: 0;
+}
+
+.contentTitle {
+    color: rgb(14, 14, 14);
+    @apply text-4xl md:text-6xl;
+    font-family: 'Brandon Grotesque', sans-serif;
+    @apply pb-20 md:pb-28;
+}
