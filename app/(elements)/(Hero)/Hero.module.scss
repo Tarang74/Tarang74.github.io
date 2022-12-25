@@ -1,0 +1,68 @@
+.heroContainer {
+    @apply min-h-screen w-full;
+    @apply flex flex-col items-center justify-center;
+    // @apply bg-spaceblack;
+    background: transparent;
+
+    opacity: 0;
+    filter: blur(5px);
+
+    animation: 4s whenVisibleBlur 0.9s cubic-bezier(0.7, 0, 0.84, 0) forwards,
+        4s whenVisibleOpacity 0.9s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+
+    @keyframes whenVisibleBlur {
+        from {
+            filter: blur(5px);
+        }
+        to {
+            filter: blur(0px);
+        }
+    }
+
+    @keyframes whenVisibleOpacity {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+.heroMainContent {
+    @apply h-full w-full;
+    @apply flex flex-col content-center items-center justify-center;
+    @apply mx-24 md:mx-32 lg:mx-48;
+    @apply my-16;
+}
+
+.heroName {
+    @apply text-right;
+    color: rgb(255, 243, 243);
+    @apply text-6xl md:text-8xl lg:text-8xl xl:text-9xl;
+    @apply py-2;
+    font-family: 'Bison';
+}
+
+.heroTitle {
+    @apply text-center;
+    color: rgb(255, 245, 245);
+    @apply text-lg md:text-[26px] lg:text-3xl xl:text-4xl;
+    @apply py-2;
+    font-family: 'Brandon Grotesque', sans-serif;
+}
+
+// .heroTemporary {
+//     @apply text-center;
+//     color: rgb(255, 243, 243);
+//     @apply text-xl md:text-2xl lg:text-3xl;
+//     @apply py-8;
+//     font-family: 'Brandon Grotesque', sans-serif;
+// }
+
+// .heroBottomContent {
+//     @apply bottom-0;
+//     @apply flex flex-row justify-start;
+//     @apply h-16 w-full;
+//     // border-top: 2px solid rgba(255, 245, 245, 0.6);
+// }

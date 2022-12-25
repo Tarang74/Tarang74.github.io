@@ -1,0 +1,133 @@
+.softwareScrollContainer {
+    background-color: rgb(252, 245, 245);
+    @apply flex flex-col justify-between gap-y-20;
+    margin: 0;
+    @apply h-full w-screen;
+}
+
+@mixin white-gradient {
+    background: linear-gradient(
+        to right,
+        rgb(252, 245, 245) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+$icon-margin: 10px;
+$icon-width: 250px;
+$icon-height: $icon-width;
+
+$scroll-1-count: 14;
+$scroll-2-count: 12;
+$scroll-3-count: 16;
+
+@keyframes scroll1 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(
+            calc(-1 * ($icon-width + 2 * $icon-margin) * $scroll-1-count)
+        );
+    }
+}
+
+@keyframes scroll2 {
+    0% {
+        transform: translateX(
+            calc(-1 * ($icon-width + 2 * $icon-margin) * $scroll-2-count)
+        );
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes scroll3 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(
+            calc(-1 * ($icon-width + 2 * $icon-margin) * $scroll-3-count)
+        );
+    }
+}
+
+.softwareScrollView {
+    @apply flex flex-row justify-start align-bottom;
+    border-top: 4px solid rgba(188, 192, 198, 0.2);
+    border-bottom: 4px solid rgba(188, 192, 198, 0.2);
+    background-color: rgb(255, 251, 251);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        @include white-gradient;
+        // content: '';
+        height: $icon-height;
+        position: absolute;
+        @apply w-0 sm:w-32;
+
+        @screen md {
+            width: calc((100% - 1536px) / 2);
+        }
+
+        z-index: 2;
+    }
+
+    &::after {
+        right: 0;
+        top: 0;
+        transform: rotateZ(180deg);
+    }
+
+    &::before {
+        left: 0;
+        top: 0;
+    }
+
+    .softwareScrollItem {
+        width: $icon-width;
+        height: $icon-height;
+        margin: 0 $icon-margin;
+        @apply flex items-center justify-center;
+
+        img {
+            opacity: 25%;
+            height: calc($icon-height - 75px);
+            transition: opacity 0.9s ease-in;
+        }
+
+        &:hover {
+            img {
+                opacity: 100%;
+            }
+        }
+    }
+}
+
+.softwareScrollTrack1 {
+    animation: scroll1 160s linear infinite;
+    width: calc(($icon-width + 2 * $icon-margin) * $scroll-1-count * 2);
+    @apply flex;
+}
+
+.softwareScrollTrack2 {
+    animation: scroll2 200s linear infinite;
+    width: calc(($icon-width + 2 * $icon-margin) * $scroll-2-count * 2);
+    @apply flex;
+}
+
+.softwareScrollTrack3 {
+    animation: scroll3 120s linear infinite;
+    width: calc(($icon-width + 2 * $icon-margin) * $scroll-3-count * 2);
+    @apply flex;
+}

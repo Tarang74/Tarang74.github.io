@@ -1,6 +1,7 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}'],
-    plugins: [require('@tailwindcss/forms'), require('daisyui')],
+    content: ['app/**/*.{ts,tsx}', 'components/**/*.{js,ts,jsx,tsx}'],
+    // plugins: [require('@tailwindcss/forms')],
     theme: {
         extend: {
             screens: {

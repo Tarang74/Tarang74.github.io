@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@font-face {
+    font-family: 'Bison';
+    src: url('../fonts/Bison.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('../fonts/Brandon Grotesque.otf') format('opentype');
+}
+
+html {
+    @apply bg-spaceblack;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Brandon Grotesque', sans-serif;
+    color: rgb(253, 245, 245);
+    text-decoration: none;
+}
+
+::selection {
+    background: rgba(255, 255, 255, 0.2);
+}

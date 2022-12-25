@@ -1,0 +1,86 @@
+.dotsLoadingContainer {
+    @apply absolute flex h-screen w-screen items-center justify-center;
+    overflow: hidden;
+
+    animation: 4s animateOpacity 0.9s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+    @keyframes animateOpacity {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+}
+
+.gradientContainer {
+    @apply absolute flex h-full w-full items-center justify-center;
+
+    // animation: animateScale 4s cubic-bezier(0.5, 1, 0.89, 1) forwards,
+    animation: 1s animateBlur 2s linear forwards;
+
+    // @keyframes animateScale {
+    //     from {
+    //         transform: scale(1);
+    //     }
+    //     to {
+    //         transform: scale(1.04);
+    //     }
+    // }
+
+    @keyframes animateBlur {
+        from {
+            filter: blur(0px);
+        }
+        to {
+            filter: blur(0.6px);
+        }
+    }
+}
+
+.gradient1 {
+    @apply absolute h-full w-full;
+    background: linear-gradient(
+        16deg,
+        #2d9de7,
+        #331fe4,
+        #0e61dd,
+        #0bacf1,
+        #09b6f8
+    );
+
+    animation: animateOpacity1 4s linear forwards;
+    @keyframes animateOpacity1 {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+    mask-image: url(#dots);
+}
+
+.gradient2 {
+    @apply absolute h-full w-full;
+    background: linear-gradient(
+        75deg,
+        #2494df,
+        #827ad3,
+        #b572fc,
+        #f710ff,
+        #09b6f8
+    );
+
+    animation: animateOpacity2 4s linear forwards;
+    @keyframes animateOpacity2 {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    mask-image: url(#dots);
+}

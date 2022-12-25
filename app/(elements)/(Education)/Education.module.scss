@@ -1,0 +1,48 @@
+.educationContainer {
+    @apply flex flex-col gap-16;
+    @apply items-center justify-center;
+}
+
+.educationCard {
+    @apply max-w-lg overflow-hidden rounded-lg shadow-xl;
+    @apply w-full p-2 md:p-5;
+
+    background-color: rgb(251, 248, 248);
+    border: rgba(225, 225, 225, 0.4) 1px solid;
+
+    transition: transform 0.35s ease-out;
+
+    &:hover {
+        transform: scale(1.1);
+        .educationCardPeriod {
+            color: rgba(92, 92, 92, 0.8);
+        }
+    }
+}
+
+.educationCardTitle {
+    @apply mb-2 text-lg font-bold md:text-xl;
+    color: rgb(14, 14, 14);
+}
+
+.educationCardSchool {
+    @apply text-sm font-light md:text-base;
+    color: rgb(64, 64, 64);
+}
+
+.educationCardDescription {
+    @apply text-sm italic md:text-base;
+    color: rgb(64, 64, 64);
+}
+
+.educationCardGrade {
+    @apply text-sm md:text-base;
+    color: rgb(64, 64, 64);
+}
+
+.educationCardPeriod {
+    @apply text-right text-base md:text-2xl;
+    user-select: none;
+    color: rgba(92, 92, 92, 0.4);
+    transition: color 0.35s ease-out;
+}
