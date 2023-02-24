@@ -2,7 +2,7 @@
     @apply absolute flex h-screen w-screen items-center justify-center;
     overflow: hidden;
 
-    animation: 4s animateOpacity 0.9s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+    animation: animateOpacity 2s cubic-bezier(0.7, 0, 0.84, 0) 1.5s forwards;
     @keyframes animateOpacity {
         from {
             opacity: 1;
@@ -17,7 +17,7 @@
     @apply absolute flex h-full w-full items-center justify-center;
 
     // animation: animateScale 4s cubic-bezier(0.5, 1, 0.89, 1) forwards,
-    animation: 1s animateBlur 2s linear forwards;
+    animation: animateBlur 2s linear 1.5s forwards;
 
     // @keyframes animateScale {
     //     from {

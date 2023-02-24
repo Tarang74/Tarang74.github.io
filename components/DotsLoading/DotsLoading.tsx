@@ -5,6 +5,22 @@ import useWindowDimension from '@hooks/useWindowDimension';
 
 import styles from './DotsLoading.module.scss';
 
+function shuffleArray<T>(array: Array<T>) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function partition(array: Array<number>, n: number) {
+    // n chunks
+    const size = Math.ceil(array.length / n);
+
+    return Array.from({ length: n }, (v, i) =>
+        array.slice(i * size, i * size + size)
+    );
+}
+
 export default function DotsLoading() {
     const { width, height } = useWindowDimension();
 
@@ -14,7 +30,7 @@ export default function DotsLoading() {
     const rows = Math.ceil(height / (dotSize + gap));
     const xOffset = (width - columns * (dotSize + gap)) / 2;
     const yOffset = (height - rows * (dotSize + gap)) / 2;
-    const dots = [];
+    const dots: { x: number; y: number }[] = [];
 
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < columns; j++) {
@@ -25,48 +41,46 @@ export default function DotsLoading() {
         }
     }
 
-    const [inactiveDotIndices, setInactiveDotIndices] = useState<number[]>([]);
-    const [activeDotIndices] = useState<number[]>([]);
+    const indices = [...Array(dots.length).keys()];
+    shuffleArray(indices);
+    const [indicesOrder, setIndicesOrder] = useState<Array<number[]>>([]);
+
+    const [activeDotIndices, setActiveDotIndices] = useState<
+        Map<number, boolean>
+    >(new Map<number, boolean>());
+
+    const [partitionNumber, setPartitionNumber] = useState<number>(0);
+
+    const [firstRender, setFirstRender] = useState<boolean>(false);
 
     useEffect(() => {
-        setInactiveDotIndices(Array.from(Array(dots.length).keys()));
-    }, [dots.length]);
+        if (indices.length != 0 && !firstRender) {
+            setIndicesOrder(partition(indices, 6));
 
-    const groupSizeCondition = dots.length < 1000;
-    const minGroupSize = groupSizeCondition ? 70 : 100;
-    const maxGroupSize = groupSizeCondition ? 130 : 220;
-
-    useEffect(() => {
-        if (inactiveDotIndices.length != 0) {
-            const interval = setInterval(() => {
-                // Generate a random group size
-                const groupSize =
-                    Math.floor(
-                        Math.random() * (maxGroupSize - minGroupSize + 1)
-                    ) + minGroupSize;
-
-                // Shuffle array
-                inactiveDotIndices.sort(() => 0.5 - Math.random());
-
-                // Get sub-array of first n elements after shuffled and update active dot indices
-                if (inactiveDotIndices.length >= groupSize) {
-                    activeDotIndices.push(
-                        ...inactiveDotIndices.slice(0, groupSize)
-                    );
-                    setInactiveDotIndices(
-                        inactiveDotIndices.filter(
-                            (dotIndex) => !activeDotIndices.includes(dotIndex)
-                        )
-                    );
-                } else {
-                    activeDotIndices.push(...inactiveDotIndices);
-                    setInactiveDotIndices([]);
-                }
-            }, 350);
-
-            return () => clearInterval(interval);
+            setActiveDotIndices(
+                new Map<number, boolean>(indices.map((v) => [v, false]))
+            );
+            if (indices.length == activeDotIndices.size) {
+                setFirstRender(true);
+            }
         }
-    }, [inactiveDotIndices, activeDotIndices, maxGroupSize, minGroupSize]);
+    });
+
+    useEffect(() => {
+        if (firstRender) {
+            if (partitionNumber < indicesOrder.length) {
+                const interval = setInterval(() => {
+                    indicesOrder[partitionNumber].forEach((idx) => {
+                        activeDotIndices.set(idx, true);
+                    });
+
+                    setPartitionNumber(partitionNumber + 1);
+                }, 250);
+
+                return () => clearInterval(interval);
+            }
+        }
+    });
 
     return (
         <div className={styles.dotsLoadingContainer}>
@@ -80,7 +94,7 @@ export default function DotsLoading() {
                                 cy={dot.y + dotSize / 2}
                                 r={dotSize / 2}
                                 fill={
-                                    activeDotIndices.includes(index)
+                                    activeDotIndices.get(index)
                                         ? '#fff'
                                         : '#000'
                                 }
