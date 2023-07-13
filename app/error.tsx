@@ -1,8 +1,5 @@
 'use client';
 
-// 'use client' marks this page as a Client Component
-// https://beta.nextjs.org/docs/rendering/server-and-client-components
-
 import './globals.css';
 import { useEffect } from 'react';
 import styles from './error.module.scss';
@@ -15,15 +12,10 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
 
     return (
         <div className={styles.errorContainer}>
-            <div className={styles.errorContainerLeft}>
-                <div className={styles.errorTitle}>
-                    Something went wrong 😥😢... <br />
+                <div className={styles.errorText}>
+                    Something went wrong 😢<br />
                     Please try again later.
-                </div>
             </div>
-            {/* <div className={styles.errorContainerRight}>
-                <div className={styles.errorCode}>404</div>
-            </div> */}
         </div>
     );
 }

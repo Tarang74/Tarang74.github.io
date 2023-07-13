@@ -1,0 +1,27 @@
+.button {
+    @apply flex flex-col items-center justify-center;
+    @apply border-4 border-white;
+
+    width: 10rem;
+    height: 3.5rem;
+
+    a {
+        @apply text-xl uppercase text-white;
+        letter-spacing: 0.15rem;
+
+        transition: all 0.3s ease-in-out;
+    }
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0 25px 3px rgba(255, 255, 255, 0.2);
+        width: 12rem;
+
+        @apply bg-white;
+        a {
+            letter-spacing: 0.35rem;
+            @apply text-spaceblack;
+        }
+    }
+}

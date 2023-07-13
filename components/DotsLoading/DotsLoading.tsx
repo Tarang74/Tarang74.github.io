@@ -24,8 +24,8 @@ function partition(array: Array<number>, n: number) {
 export default function DotsLoading() {
     const { width, height } = useWindowDimension();
 
-    const dotSize = 5;
-    const gap = 50;
+    const dotSize = 8;
+    const gap = 60;
     const columns = Math.ceil(width / (dotSize + gap));
     const rows = Math.ceil(height / (dotSize + gap));
     const xOffset = (width - columns * (dotSize + gap)) / 2;
@@ -55,7 +55,7 @@ export default function DotsLoading() {
 
     useEffect(() => {
         if (indices.length != 0 && !firstRender) {
-            setIndicesOrder(partition(indices, 6));
+            setIndicesOrder(partition(indices, 5));
 
             setActiveDotIndices(
                 new Map<number, boolean>(indices.map((v) => [v, false]))
@@ -75,7 +75,7 @@ export default function DotsLoading() {
                     });
 
                     setPartitionNumber(partitionNumber + 1);
-                }, 250);
+                }, 300);
 
                 return () => clearInterval(interval);
             }

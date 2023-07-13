@@ -1,0 +1,16 @@
+
+.errorContainer {
+    @apply flex h-screen w-screen items-center justify-center gap-12;
+
+    div {
+        @apply flex flex-col items-end justify-start;
+    }
+}
+
+.errorText {
+    @apply text-6xl font-bold;
+}
+
+.errorCode {
+    @apply text-[12rem] font-bold;
+}

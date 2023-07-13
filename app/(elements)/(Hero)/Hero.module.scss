@@ -1,14 +1,14 @@
 .heroContainer {
     @apply min-h-screen w-full;
     @apply flex flex-col items-center justify-center;
-    // @apply bg-spaceblack;
+    @apply bg-spaceblack;
     background: transparent;
 
     opacity: 0;
     filter: blur(5px);
 
-    animation: whenVisibleBlur 0.9s cubic-bezier(0.7, 0, 0.84, 0) 5s forwards,
-        whenVisibleOpacity 0.9s cubic-bezier(0.7, 0, 0.84, 0) 5s forwards;
+    animation: 0.9s cubic-bezier(0.7, 0, 0.84, 0) forwards whenVisibleBlur,
+        0.9s cubic-bezier(0.7, 0, 0.84, 0) forwards whenVisibleOpacity;
 
     @keyframes whenVisibleBlur {
         from {
@@ -32,14 +32,14 @@
 .heroMainContent {
     @apply h-full w-full;
     @apply flex flex-col content-center items-center justify-center;
-    @apply mx-24 md:mx-32 lg:mx-48;
-    @apply my-16;
+    @apply mx-32 my-16;
 }
 
 .heroName {
     @apply text-right;
     color: rgb(255, 243, 243);
-    @apply text-6xl md:text-7xl lg:text-7xl xl:text-[10rem];
+    @apply text-[6rem] md:text-[10rem];
+    @apply leading-[6rem] md:leading-[10rem];
     @apply py-2;
     font-family: 'Bison';
 }
@@ -47,7 +47,7 @@
 .heroTitle {
     @apply text-center;
     color: rgb(255, 245, 245);
-    @apply text-lg md:text-[26px] lg:text-3xl xl:text-5xl;
+    @apply text-3xl sm:text-5xl;
     @apply py-2;
     font-family: 'Brandon Grotesque', sans-serif;
 }

@@ -101,13 +101,15 @@ $scroll-3-count: 16;
         @apply flex items-center justify-center;
 
         img {
+            filter: saturate(0.25);
             opacity: 25%;
             height: calc($icon-height - 75px);
-            transition: opacity 0.9s ease-in;
+            transition: opacity 0.2s ease-in, filter 0.2s ease-in;
         }
 
         &:hover {
             img {
+                filter: saturate(1);
                 opacity: 100%;
             }
         }

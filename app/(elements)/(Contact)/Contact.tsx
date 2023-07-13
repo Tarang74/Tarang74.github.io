@@ -1,44 +1,29 @@
+import Button from '@components/Button/Button';
 import styles from './Contact.module.scss';
 
 export default function Contact() {
     return (
         <div className={styles.contactContainer}>
-            <div className={styles.contactColumnLeft}>
+            <div className={styles.contactColumnFirst}>
                 <div className={styles.contactHeader}>
                     <h1>Contact</h1>
                 </div>
                 <div className={styles.contactDescription}>
-                    If you have any questions, feel free to reach out to me
-                    through any of the following platforms.
+                    Reach out to me on these platforms.
                 </div>
                 <div className={styles.contactLocations}>
-                    <a
-                        href="mailto:tjanawalkar74@gmail.com?subject=Message from your website. Hello Tarang!"
-                        className={styles.contactLocation}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Email
-                    </a>
-                    <a
-                        href="https://www.linkedin.com/in/tarangjanawalkar"
-                        className={styles.contactLocation}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        LinkedIn
-                    </a>
-                    <a
-                        href="https://github.com/Tarang74"
-                        className={styles.contactLocation}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        GitHub
-                    </a>
+                    <Button
+                        link="mailto:tjanawalkar74@gmail.com?subject=Message from your website. Hello Tarang!"
+                        text="Email"
+                    />
+                    <Button
+                        link="https://linkedin.com/in/tarangjanawalkar"
+                        text="LinkedIn"
+                    />
+                    <Button link="https://github.com/Tarang74" text="GitHub" />
                 </div>
             </div>
-            <div className={styles.contactColumnRight}>
+            <div className={styles.contactColumnSecond}>
                 <div className={styles.contactCopyright}>
                     <p>&copy; {new Date().getFullYear()}</p>
                     Tarang Janawalkar

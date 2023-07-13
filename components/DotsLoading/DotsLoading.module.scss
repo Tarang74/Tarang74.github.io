@@ -2,7 +2,7 @@
     @apply absolute flex h-screen w-screen items-center justify-center;
     overflow: hidden;
 
-    animation: animateOpacity 2s cubic-bezier(0.7, 0, 0.84, 0) 1.5s forwards;
+    animation: 2.5s cubic-bezier(0.7, 0, 0.84, 0) 0.5s forwards animateOpacity;
     @keyframes animateOpacity {
         from {
             opacity: 1;
@@ -16,17 +16,17 @@
 .gradientContainer {
     @apply absolute flex h-full w-full items-center justify-center;
 
-    // animation: animateScale 4s cubic-bezier(0.5, 1, 0.89, 1) forwards,
-    animation: animateBlur 2s linear 1.5s forwards;
+    animation: 3s cubic-bezier(0.5, 1, 0.89, 1) forwards animateScale;
+    //  3s linear 3s forwards animateBlur;
 
-    // @keyframes animateScale {
-    //     from {
-    //         transform: scale(1);
-    //     }
-    //     to {
-    //         transform: scale(1.04);
-    //     }
-    // }
+    @keyframes animateScale {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(1.001);
+        }
+    }
 
     @keyframes animateBlur {
         from {
@@ -49,7 +49,7 @@
         #09b6f8
     );
 
-    animation: animateOpacity1 4s linear forwards;
+    animation: 3s linear forwards animateOpacity1;
     @keyframes animateOpacity1 {
         from {
             opacity: 1;
@@ -72,7 +72,7 @@
         #09b6f8
     );
 
-    animation: animateOpacity2 4s linear forwards;
+    animation: 3s linear forwards animateOpacity2;
     @keyframes animateOpacity2 {
         from {
             opacity: 0;

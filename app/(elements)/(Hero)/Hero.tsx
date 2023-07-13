@@ -5,13 +5,11 @@ export default function Hero() {
         <div className={styles.heroContainer}>
             <div className={styles.heroMainContent}>
                 <div className={styles.heroName}>
-                    TARANG
+                    <span>TARANG</span>
                     <br />
-                    JANAWALKAR
+                    <span>JANAWALKAR</span>
                 </div>
-                <div className={styles.heroTitle}>
-                    Software Engineer & Mathematician
-                </div>
+                <div className={styles.heroTitle}>Software Engineer</div>
             </div>
         </div>
     );

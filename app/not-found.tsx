@@ -1,12 +1,8 @@
 'use client';
 
-// 'use client' marks this page as a Client Component
-// https://beta.nextjs.org/docs/rendering/server-and-client-components
-
 import './globals.css';
 import { useEffect } from 'react';
-import styles from './not-found.module.scss';
-import CountdownRedirect from '@components/CountdownRedirect';
+import styles from './error.module.scss';
 
 export default function Custom404({
     error
@@ -21,16 +17,15 @@ export default function Custom404({
 
     return (
         <div className={styles.errorContainer}>
-            <div className={styles.errorContainerLeft}>
-                <div className={styles.errorTitle}>
+            <div>
+                <div className={styles.errorText}>
                     Oops!
                     <br />I think you might be lost.
                 </div>
             </div>
-            <div className={styles.errorContainerRight}>
+            <div>
                 <div className={styles.errorCode}>404</div>
             </div>
-            <CountdownRedirect redirectTo="/" seconds={10} />
         </div>
     );
 }

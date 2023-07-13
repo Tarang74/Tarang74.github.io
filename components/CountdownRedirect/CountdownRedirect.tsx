@@ -9,7 +9,6 @@ declare type Url = string | UrlObject;
 interface P {
     redirectTo: Url;
     seconds: number;
-    children?: React.ReactNode;
 }
 
 export default function CountdownRedirect(props: P) {

@@ -10,34 +10,35 @@
     background-color: rgb(251, 248, 248);
     border: rgba(225, 225, 225, 0.4) 1px solid;
 
-    transition: transform 0.35s ease-out;
+    transition: transform 0.25s ease-in-out, border-color 0.25s ease-in-out;
 
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.15);
         .educationCardPeriod {
             color: rgba(92, 92, 92, 0.8);
         }
+        border-color: rgba(225, 225, 225, 0.8);
     }
 }
 
 .educationCardTitle {
-    @apply mb-2 text-lg font-bold md:text-xl;
-    color: rgb(14, 14, 14);
+    @apply mb-2 text-lg md:text-2xl;
+    color: rgb(24, 24, 24);
 }
 
 .educationCardSchool {
     @apply text-sm font-light md:text-base;
-    color: rgb(64, 64, 64);
+    color: rgb(92, 92, 92);
 }
 
 .educationCardDescription {
     @apply text-sm italic md:text-base;
-    color: rgb(64, 64, 64);
+    color: rgb(92, 92, 92);
 }
 
 .educationCardGrade {
     @apply text-sm md:text-base;
-    color: rgb(64, 64, 64);
+    color: rgb(92, 92, 92);
 }
 
 .educationCardPeriod {
