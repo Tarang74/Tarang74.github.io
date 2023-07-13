@@ -2,7 +2,15 @@
     background-color: rgb(252, 245, 245);
     @apply flex items-center justify-center;
     @apply w-full;
-    @apply py-32;
+    @apply px-12 py-24 xs:py-32;
+    @apply m-0;
+}
+
+.contentContainerSingle {
+    background-color: rgb(252, 245, 245);
+    @apply flex items-center justify-center;
+    @apply w-full;
+    @apply px-12 py-16;
     @apply m-0;
 }
 

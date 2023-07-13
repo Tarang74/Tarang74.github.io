@@ -7,15 +7,15 @@ interface P {
 }
 
 export default function Content(props: PropsWithChildren<P>) {
-    return (
-        <div
-            className={styles.contentContainer}
-            style={{
-                paddingTop: '4rem',
-                paddingBottom: '4rem',
-                minHeight: '100vh'
-            }}
-        >
+    return props.single ? (
+        <div className={styles.contentContainerSingle}>
+            <div className={styles.contentContent}>
+                <div className={styles.contentTitle}>{props.title}</div>
+                <div>{props.children}</div>
+            </div>
+        </div>
+    ) : (
+        <div className={styles.contentContainer}>
             <div className={styles.contentContent}>
                 <div className={styles.contentTitle}>{props.title}</div>
                 <div>{props.children}</div>

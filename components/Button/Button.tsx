@@ -8,8 +8,8 @@ export interface ButtonProps {
 
 export default function Button(buttonProps: ButtonProps) {
     return (
-        <div className={styles.button}>
-            <a href={buttonProps.link}>{buttonProps.text}</a>
-        </div>
+        // <button >
+            <a className={styles.button} href={buttonProps.link}>{buttonProps.text}</a>
+        // </button>
     );
 }

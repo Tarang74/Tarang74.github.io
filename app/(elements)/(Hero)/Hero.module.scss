@@ -33,13 +33,22 @@
     @apply h-full w-full;
     @apply flex flex-col content-center items-center justify-center;
     @apply mx-32 my-16;
+
+    overflow: hidden;
 }
+
+// @media (max-width: 500px) {
+//     .heroName {
+//         @apply text-[3rem];
+//         @apply leading-[3rem];
+//     }
+// }
 
 .heroName {
     @apply text-right;
     color: rgb(255, 243, 243);
-    @apply text-[6rem] md:text-[10rem];
-    @apply leading-[6rem] md:leading-[10rem];
+    @apply text-[4rem] xs:text-[6rem] md:text-[10rem];
+    @apply leading-[4rem] xs:leading-[6rem] md:leading-[10rem];
     @apply py-2;
     font-family: 'Bison';
 }

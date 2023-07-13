@@ -28,21 +28,21 @@
 
 .educationCardSchool {
     @apply text-sm font-light md:text-base;
-    color: rgb(92, 92, 92);
+    color: rgb(52, 52, 52);
 }
 
 .educationCardDescription {
     @apply text-sm italic md:text-base;
-    color: rgb(92, 92, 92);
+    color: rgb(52, 52, 52);
 }
 
 .educationCardGrade {
-    @apply text-sm md:text-base;
-    color: rgb(92, 92, 92);
+    @apply mt-1 text-sm md:text-base;
+    color: rgb(110, 110, 110);
 }
 
 .educationCardPeriod {
-    @apply text-right text-base md:text-2xl;
+    @apply mt-2 text-right text-xl md:text-3xl;
     user-select: none;
     color: rgba(92, 92, 92, 0.4);
     transition: color 0.35s ease-out;

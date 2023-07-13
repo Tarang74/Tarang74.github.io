@@ -261,7 +261,7 @@ export default function SoftwarePage() {
     }
 
     return (
-        <Content title="Powered by">
+        <Content title="Powered by" single={true}>
             <div className={styles.softwareScrollContainer}>{output}</div>
         </Content>
     );

@@ -5,7 +5,7 @@ module.exports = {
     theme: {
         extend: {
             screens: {
-                xs: '360px'
+                xs: '420px'
             },
             colors: {
                 spaceblack: 'rgba(9, 9, 11)'
