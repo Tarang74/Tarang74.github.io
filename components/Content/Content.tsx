@@ -8,18 +8,18 @@ interface P {
 
 export default function Content(props: PropsWithChildren<P>) {
     return props.single ? (
-        <div className={styles.contentContainerSingle}>
+        <section className={styles.contentContainerSingle}>
             <div className={styles.contentContent}>
                 <div className={styles.contentTitle}>{props.title}</div>
                 <div>{props.children}</div>
             </div>
-        </div>
+        </section>
     ) : (
-        <div className={styles.contentContainer}>
+        <section className={styles.contentContainer}>
             <div className={styles.contentContent}>
                 <div className={styles.contentTitle}>{props.title}</div>
                 <div>{props.children}</div>
             </div>
-        </div>
+        </section>
     );
 }

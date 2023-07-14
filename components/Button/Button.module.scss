@@ -1,19 +1,19 @@
 .button {
     @apply flex flex-col items-center justify-center;
-    @apply border-4 border-white;
+    @apply border-4 border-[#fdf5f5];
 
     @apply w-[8rem] xs:w-[10rem];
     @apply h-[3rem] xs:h-[3.5rem];
 
-    @apply text-base xs:text-xl uppercase text-white;
+    @apply text-base xs:text-xl uppercase text-[#fdf5f5];
     letter-spacing: 0.15rem;
 
     transition: all 0.3s ease-in-out;
     &:hover {
         @apply w-[10rem] xs:w-[12rem];
-        @apply bg-white text-spaceblack;
+        @apply bg-[#fdf5f5] text-spaceblack;
 
-        box-shadow: 0 0 25px 3px rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 25px 3px rgba(253, 245, 245, 0.2);
         letter-spacing: 0.35rem;
     }
 }
