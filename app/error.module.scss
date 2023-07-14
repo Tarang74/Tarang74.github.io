@@ -1,7 +1,7 @@
 
 .errorContainer {
     @apply px-2 md:px-10;
-    @apply flex h-screen w-screen flex-col md:flex-row items-center justify-center gap-2 sm:gap-6 md:gap-12;
+    @apply flex h-screen w-screen flex-col md:flex-row items-center justify-center md:gap-12;
 
     div {
         @apply flex flex-col items-end justify-start;
@@ -13,5 +13,5 @@
 }
 
 .errorCode {
-    @apply text-[8rem] xs:text-[9rem] sm:text-[11rem] md:text-[12rem] font-bold;
+    @apply text-[11rem] md:text-[12rem] font-bold;
 }
